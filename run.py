@@ -10,7 +10,7 @@ import core.util as Util
 from data import define_dataloader
 from models import create_model, define_network, define_loss, define_metric
 
-def main_worker(gpu, ngpus_per_node, opt):
+def main_worker(gpu, ngpus_per_node, opt): # función principal
     """  threads running on each GPU """
     if 'local_rank' not in opt:
         opt['local_rank'] = opt['global_rank'] = gpu
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     parser.add_argument('-P', '--port', default='21012', type=str)
 
     ''' parser configs '''
-    args = parser.parse_args()
+    args = parser.parse_args()  # argumentos de línea de comandos 
     opt = Praser.parse(args)
     
     ''' cuda devices '''
