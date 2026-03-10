@@ -1,7 +1,7 @@
 {
     "name": "ours_double_encoder_splitcaCond_splitcaUnet_sigmoid",
     "gpu_ids": [
-        1
+        6
     ],
     "seed": -1,
     "finetune_norm": false,
@@ -11,7 +11,7 @@
         "tb_logger": "tb_logger",
         "results": "results",
         "checkpoint": "checkpoint",
-        "resume_state": null
+        "resume_state": "pretrained/diffcr_new.pth"
     },
     "datasets": {
         "train": {
@@ -21,7 +21,7 @@
                     "Sen2_MTC_New_Multi"
                 ],
                 "args": {
-                    "data_root": "../pmaa/data",
+                    "data_root": "/mnt/compartida/mbravo_cps/Datasets/CTGAN/CTGAN/Sen2_MTC/dataset",
                     "mode": "train"
                 }
             },
@@ -47,7 +47,7 @@
             "which_dataset": {
                 "name": "Sen2_MTC_New_Multi",
                 "args": {
-                    "data_root": "../pmaa/data",
+                    "data_root": "/mnt/compartida/mbravo_cps/Datasets/CTGAN/CTGAN/Sen2_MTC/dataset",
                     "mode": "val"
                 }
             }
@@ -56,7 +56,7 @@
             "which_dataset": {
                 "name": "Sen2_MTC_New_Multi",
                 "args": {
-                    "data_root": "../pmaa/data",
+                    "data_root": "/mnt/compartida/mbravo_cps/Datasets/CTGAN/CTGAN/Sen2_MTC/dataset",
                     "mode": "test"
                 }
             },
