@@ -7,19 +7,19 @@ import random
 import numpy as np
 import tifffile as tiff
 
-# from .util.mask import (bbox2mask, brush_stroke_mask,
-#                         get_irregular_mask, random_bbox, random_cropping_bbox)
+from .util.mask import (bbox2mask, brush_stroke_mask,
+                         get_irregular_mask, random_bbox, random_cropping_bbox)
 
 IMG_EXTENSIONS = [
     '.jpg', '.JPG', '.jpeg', '.JPEG',
     '.png', '.PNG', '.ppm', '.PPM', '.bmp', '.BMP',
 ]
 
-
+# verifica si el archivo es una imagen válida
 def is_image_file(filename):
     return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
-
+# si el directorio es un archivo, lee las rutas de las imágenes desde el archivo
 def make_dataset(dir):
     if os.path.isfile(dir):
         images = [i for i in np.genfromtxt(
@@ -35,10 +35,11 @@ def make_dataset(dir):
 
     return images
 
-
+# función para cargar una imagen usando PIL y convertirla a RGB
 def pil_loader(path):
     return Image.open(path).convert('RGB')
 
+# lee imágenes con nubes en 3 tiempos y una imagen sin nubes
 class Sen2_MTC_New_Multi(data.Dataset):
     def __init__(self, data_root, mode='train'):
         self.data_root = data_root
@@ -512,7 +513,8 @@ if __name__=='__main__':
         rgb = rgb.astype(np.uint8)
 
         return rgb
-    for ret in Sen2_MTC_New("datasets", "val"):
+    for ret in Sen2_MTC_New_Multi(
+        "/mnt/compartida/mbravo_cps/Datasets/CTGAN/CTGAN/Sen2_MTC/dataset/Sen2_MTC", "val"):
         # if ret["path"] == "T34TDT_R036_69.png":
         #     img = ret['gt_image'].permute(1, 2, 0)[:, :, :3]
         #     img = img.clamp_(*(-1, 1)).numpy()
