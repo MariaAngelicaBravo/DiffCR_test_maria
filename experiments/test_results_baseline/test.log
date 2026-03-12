@@ -1,0 +1,19 @@
+26-03-10 18:52:28.439 - INFO: Create the log file in directory experiments/test_ours_double_encoder_splitcaCond_splitcaUnet_sigmoid_260310_185228.
+
+26-03-10 18:52:28.643 - INFO: Dataset [Sen2_MTC_New_Multi() form data.dataset] is created.
+26-03-10 18:52:28.659 - INFO: Dataset [Sen2_MTC_New_Multi() form data.dataset] is created.
+26-03-10 18:52:28.659 - INFO: Dataset for test have 687 samples.
+26-03-10 18:52:28.881 - INFO: Network [Network() form models.network_x0_dpm_solver] is created.
+26-03-10 18:52:28.882 - WARNING: Config is a str, converts to a dict {'name': 'mae'}
+26-03-10 18:52:29.221 - INFO: Metric [mae() form models.metric] is created.
+26-03-10 18:52:29.221 - WARNING: Config is a str, converts to a dict {'name': 'mse_loss'}
+26-03-10 18:52:29.221 - INFO: Loss [mse_loss() form models.loss] is created.
+26-03-10 18:52:29.642 - INFO: Beign loading pretrained model [Network] ...
+26-03-10 18:52:29.642 - INFO: Loading pretrained model from [pretrained/diffcr_new.pth] ...
+26-03-10 18:52:29.789 - INFO: Beign loading pretrained model [Network_ema] ...
+26-03-10 18:52:29.789 - INFO: Loading pretrained model from [pretrained/diffcr_new.pth] ...
+26-03-10 18:52:29.913 - INFO: Model [Palette() form models.model] is created.
+26-03-10 18:52:29.913 - INFO: Begin model test.
+26-03-10 19:03:41.105 - INFO: test/mae: 0.04188574478030205	
+26-03-10 19:03:41.105 - INFO: epoch: 0	
+26-03-10 19:03:41.105 - INFO: iters: 687	

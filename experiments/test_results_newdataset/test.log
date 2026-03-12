@@ -1,0 +1,19 @@
+26-03-10 22:41:11.822 - INFO: Create the log file in directory experiments/test_results_newdataset_260310_224111.
+
+26-03-10 22:41:12.410 - INFO: Dataset [Sen2_MTC_New_Multi() form data.dataset_new] is created.
+26-03-10 22:41:12.611 - INFO: Dataset [Sen2_MTC_New_Multi() form data.dataset_new] is created.
+26-03-10 22:41:12.612 - INFO: Dataset for test have 577 samples.
+26-03-10 22:41:12.800 - INFO: Network [Network() form models.network_x0_dpm_solver] is created.
+26-03-10 22:41:12.800 - WARNING: Config is a str, converts to a dict {'name': 'mae'}
+26-03-10 22:41:13.118 - INFO: Metric [mae() form models.metric] is created.
+26-03-10 22:41:13.119 - WARNING: Config is a str, converts to a dict {'name': 'mse_loss'}
+26-03-10 22:41:13.119 - INFO: Loss [mse_loss() form models.loss] is created.
+26-03-10 22:41:13.592 - INFO: Beign loading pretrained model [Network] ...
+26-03-10 22:41:13.592 - INFO: Loading pretrained model from [pretrained/diffcr_new.pth] ...
+26-03-10 22:41:13.697 - INFO: Beign loading pretrained model [Network_ema] ...
+26-03-10 22:41:13.697 - INFO: Loading pretrained model from [pretrained/diffcr_new.pth] ...
+26-03-10 22:41:13.812 - INFO: Model [Palette() form models.model] is created.
+26-03-10 22:41:13.813 - INFO: Begin model test.
+26-03-10 22:50:29.575 - INFO: test/mae: 0.05195280909538269	
+26-03-10 22:50:29.576 - INFO: epoch: 0	
+26-03-10 22:50:29.576 - INFO: iters: 577	

@@ -1,0 +1,33 @@
+import numpy as np
+import tifffile as tiff
+from PIL import Image
+from pathlib import Path
+import os
+
+tif_path = Path("/mnt/compartida/mbravo_cps/Datasets/CTGAN/CTGAN/Sen2_MTC/dataset/Sen2_MTC_copy/T12TUR_R027/cloud/T12TUR_R027_0_0.tif")
+out_path = Path("/mnt/Home-Group/mbravo_cps/DOCTORADO/DiffCR_paper_me/T12TUR_R027_0_0.png")
+
+def convert_tif_to_png(tif_path, png_path):
+
+    img = tiff.imread(tif_path).astype(np.float32)
+
+    rgb = img[:, :, :3]
+
+    rgb = np.clip(rgb, 0, 2000)
+
+    rgb = rgb - np.nanmin(rgb)
+
+    max_val = np.nanmax(rgb)
+    if max_val == 0:
+        rgb = 255 * np.ones_like(rgb)
+    else:
+        rgb = 255 * (rgb / max_val)
+
+    rgb = np.nan_to_num(rgb)
+    rgb = rgb.astype(np.uint8)
+
+    Image.fromarray(rgb).save(png_path)
+
+convert_tif_to_png(tif_path, out_path)
+
+print("Saved:", out_path)

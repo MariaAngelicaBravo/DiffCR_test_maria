@@ -1,0 +1,47 @@
+import shutil
+from pathlib import Path
+import tifffile as tiff
+
+# ===============================
+# Paths
+# ===============================
+src_root    = Path("/mnt/compartida/mbravo_cps/Datasets/CTGAN/CTGAN/Sen2_MTC/dataset/Sen2_MTC_copy")
+fused_root  = Path("/mnt/compartida/mbravo_cps/DOCTORADO/DiffCR_results/data/FUSED_IMAGES_NEW")
+dst_root    = Path("/mnt/compartida/mbravo_cps/DOCTORADO/DiffCR_results/data/NEW_DATASET")
+dst_root.mkdir(parents=True, exist_ok=True)
+
+# ===============================
+# Recorrer regiones
+# ===============================
+for region_path in src_root.iterdir():
+    if not region_path.is_dir():
+        continue
+    region_name = region_path.name
+    print(f"Processing region: {region_name}")
+
+    # crear la misma estructura de carpetas en NEW_DATASET
+    dst_region_path = dst_root / region_name
+    dst_region_path.mkdir(parents=True, exist_ok=True)
+
+    for subfolder in region_path.iterdir():
+        if not subfolder.is_dir():
+            continue
+        dst_subfolder = dst_region_path / subfolder.name
+        dst_subfolder.mkdir(parents=True, exist_ok=True)
+
+        for tif_file in subfolder.glob("*.tif"):
+            # si termina en _2.tif y está en folder 'cloud', reemplazar
+            if subfolder.name == "cloud" and tif_file.stem.endswith("_2"):
+                # determinar el nombre base del tile
+                tile_base = "_".join(tif_file.stem.split("_")[:-1]) + "_fused.tif"
+                fused_file = fused_root / region_name / tile_base
+
+                if fused_file.exists():
+                    shutil.copy(fused_file, dst_subfolder / tif_file.name.replace("_2", "_fused"))
+                    print(f"Replaced {tif_file.name} with fused image {tile_base}")
+                else:
+                    print(f"WARNING: fused image not found for {tif_file.name}, copying original")
+                    shutil.copy(tif_file, dst_subfolder / tif_file.name)
+            else:
+                # copiar archivo original
+                shutil.copy(tif_file, dst_subfolder / tif_file.name)
